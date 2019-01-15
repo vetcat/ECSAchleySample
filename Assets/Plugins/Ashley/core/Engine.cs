@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using anygames.ashley.signals;
 using anygames.ashley.utils;
 using System.Reflection;
@@ -39,7 +40,7 @@ namespace anygames.ashley.core
 			return updating;
 		}
 
-		public Engine ()
+		public Engine (List<IEntitySystem> entitySystems)
 		{
 			entityManager = new EntityManager (new EngineEntityListener (this));
 			familyManager = new FamilyManager (entityManager.getEntities ());
@@ -47,6 +48,10 @@ namespace anygames.ashley.core
 			componentRemoved = new ComponentListener (familyManager);
 			systemManager = new SystemManager (new EngineSystemListener (this));
 			componentOperationHandler = new ComponentOperationHandler (new EngineDelayedInformer (this));
+			
+			//add all binding system
+			foreach (var system in entitySystems)
+				addSystem(system as EntitySystem);
 		}
 
 

@@ -31,6 +31,11 @@ namespace anygames.ashley.systems
 			this.family = family;
 		}
 
+		protected IteratingSystem()
+		{
+			throw new System.NotImplementedException();
+		}
+
 		public override void addedToEngine (Engine engine)
 		{
 			entities = engine.getEntitiesFor (family);

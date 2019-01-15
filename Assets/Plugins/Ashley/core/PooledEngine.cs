@@ -23,7 +23,7 @@ namespace anygames.ashley.core
 		 * Creates a new PooledEngine with a maximum of 100 entities and 100 components of each type. Use
 		 * {@link #PooledEngine(int, int, int, int)} to configure the entity and component pools.
 		 */
-		public PooledEngine ()
+		public PooledEngine (List<IEntitySystem> entitySystems) : base(entitySystems)
 		{
 			componentPools = new ComponentPools (10, 100);
 			entityPool = new EntityPool (componentPools, 10, 100);
@@ -36,7 +36,7 @@ namespace anygames.ashley.core
 		 * @param componentPoolInitialSize initial size for each component type pool.
 		 * @param componentPoolMaxSize maximum size for each component type pool.
 		 */
-		public PooledEngine (int entityPoolInitialSize, int entityPoolMaxSize, int componentPoolInitialSize, int componentPoolMaxSize)
+		public PooledEngine (int entityPoolInitialSize, int entityPoolMaxSize, int componentPoolInitialSize, int componentPoolMaxSize, List<IEntitySystem> entitySystems) : base(entitySystems)
 		{
 			componentPools = new ComponentPools (componentPoolInitialSize, componentPoolMaxSize);
 			entityPool = new EntityPool (componentPools, entityPoolInitialSize, entityPoolMaxSize);

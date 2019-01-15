@@ -1,11 +1,10 @@
-using Battle.Utils;
 using UnityEngine;
-using Zenject;
 
 namespace Battle.Views
 {
-    public interface ITankView : ITransformable 
+    public interface ITankView
     {
-        
+        void SimpleMove(Vector3 velocity);
+        void SetRotation(Vector3 rotation);
     }
 }
